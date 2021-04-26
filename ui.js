@@ -318,7 +318,7 @@ function finalRound(){
         reactText += userReactList[i];
     }
     setTimeout(function (){
-        $("#robot-words").text("Please copy paste the following number and paste it to the survey question, please DONT close this page")
+        $("#robot-words").text("Please copy the following number and paste it to the survey question, please DONT close this page")
     }, 5000)
     setTimeout(function (){
         $("#robot-words").text("Copy this number >> "+ reactText + " << Then click continue")

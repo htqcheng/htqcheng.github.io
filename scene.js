@@ -75,13 +75,22 @@ function flipCardsStartGame(){
 }
 
 function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+    var i = Math.random()
+    if (i < 0.25) {
+        return 0;
+    } else if (i < 0.65) {
+        return 1;
+    } else {
+        return 2;
+    }
+    // return Math.floor(Math.random() * max);
 }
 
 function init(){
 
     // Determine version of the game (control/verbal/action cheat)
     game_version = getRandomInt(3)
+    console.log(game_version)
     // game_version = 1
     if (game_version === 1) {
         verbalCheatRoundId = [2,5,8]
