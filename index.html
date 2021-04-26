@@ -44,7 +44,7 @@
 		<div class="round-bg"></div>
 		<div class="round" style="opacity: 1;background-color: transparent">
 			<div style="padding: 5vh;">
-				<span class="title">Rusty <br><br></span>
+				<span class="title" style="font-size: 2.0vw;">Rusty <br><br></span>
 				<span id="dialogueText">Here comes round 1 of the game !</span>
 			</div>
 		</div>
@@ -55,6 +55,7 @@
 				</span>
 			</div>
 		</div>
+		<div class="answer-bg"></div>
 		<div id="answer">
 			<button class="user-option" id="happy-btn">
 				<div class="emoji" id="happy"></div>
@@ -84,22 +85,28 @@
 		    </div>
 		</div>
 		<div class="survey">
-			<button id="continue-btn">
+			<button class="continue" id="continue-to-survey">
+				Continue
+			</button>
+			<button class="continue" id="continue-to-flip">
+				Continue
+			</button>
+			<button class="continue" id="continue-to-rearrange">
 				Continue
 			</button>
 		</div>
 		<div class="intro">
 			<div class="textmask">
 				<div class="title">
-					<span class="title">Welcome to three-card monte!<br><br></span>
-					<span class="secondText">The objective of the game is to correctly identify where the joker card is located.<br>
-						To play, the player will see three cards faced up, one of which is a joker card. Rusty the robot, 
-						will then place the three cards face down on the table and will rearrange them.<br>
-						The player is then prompted to select one of the three cards. If the player correctly identifies the joker card, they 
-						will win that round. There will be a total of 20 rounds, with 10 seconds pause between each round.<br>
-						To win the game, the majority of the player’s selections must be correct. The player will be prompted to 
-						fill out a short survey at the end of the game.
-					<br><br>Please press begin to start the game.</span>
+					<span class="title">Welcome to Three-Card Monte!<br><br></span>
+					<span class="secondText">The objective of the game is to correctly identify where the joker card is located.
+						To play, the player will see three cards faced up, one of which is the joker card.
+						Rusty the robot will proceed to flip the three cards over on the table and rearrange them.
+						The player will then be prompted to select one of the three cards. If the player correctly identifies the joker, 
+						he wins that round and vice versa. There will be 10 rounds in total. To win the game, the majority of the player’s 
+						selections must be correct. The player will be prompted to fill out a short survey at the end of the game. 
+						Thank you for playing with Rusty! He is really hoping to win.
+					<br><br>We will start with a tutorial to prepare you for the game!<br>Please press begin to start the game.</span>
 				</div>
 			</div>
 			<button id="begin">

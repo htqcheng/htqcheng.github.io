@@ -36,24 +36,15 @@ const api = { state: 'Walking' };
 
 
 $('.round, .round-bg').click(async function (e) {
-    if (isTutorial){
-        await sleep(12000);
-    }else{
+    if (!isTutorial){
         await sleep(8000);
+        flipCardsStartGame()
     }
-    flipAllCards();
-    fadeToAction('Sitting',0.5)
+});
 
-    cameraTransEnlarge = true;
-
-    // update the index of round
-    round+=1
-
-    // read the game mechanism
-    step = switchCardsSpeed[round]
-    console.log("step=", step)
-
-    cardsToSwitch = switchCardsAction[round]
+$("#continue-to-rearrange").click(async function (e) {
+    await sleep(3000);
+    flipCardsStartGame()
 });
 
 $(".card").click(function(){
@@ -67,9 +58,38 @@ init();
 animate();
 function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
 
-function init(){
-    // read game mechanism from game.js
+function flipCardsStartGame(){
+    flipAllCards();
+    fadeToAction('Jump',0.5)
 
+    cameraTransEnlarge = true;
+
+    // update the index of round
+    round+=1
+
+    // read the game mechanism
+    step = switchCardsSpeed[round]
+    console.log("step=", step)
+
+    cardsToSwitch = switchCardsAction[round]
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function init(){
+
+    // Determine version of the game (control/verbal/action cheat)
+    game_version = getRandomInt(3)
+    // game_version = 1
+    if (game_version === 1) {
+        verbalCheatRoundId = [2,5,8]
+    } else if (game_version === 2) {
+        actionCheatRoundId = [2,5,8]
+    }
+
+    // read game mechanism from game.js
     for (var i = 0; i < gameMech.length; i++) {
         var switch_actions = []
         for  (var j = 0; j < gameMech[i].order.length; j++) {
@@ -137,7 +157,7 @@ function init(){
 
         console.error( e );
 
-} );
+    } );
 
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
@@ -431,9 +451,17 @@ function animate() {
         if (camera.position.z > 7.9 && camera.position.z <= 10){camera.translateZ( + 0.05 );}
         else if (camera.position.z >= 10){cameraTransBack=false}
     }
+    if (trigger_idle){
+        fadeToAction('Idle',0.5);
+        trigger_idle=false;
+    }
     if (trigger_thumbsUp){
         fadeToAction('ThumbsUp',0.2);
         trigger_thumbsUp=false;
+    }
+    if (trigger_jump) {
+        fadeToAction('Jump',0.5);
+        trigger_jump=false;
     }
     if (trigger_No){
         fadeToAction('No',0.2);
@@ -442,6 +470,18 @@ function animate() {
     if (trigger_Dance){
         fadeToAction('Running',0.2);
         trigger_Dance=false;
+    }
+    if (trigger_Death){
+        fadeToAction('Death',0.6);
+        trigger_Death=false;
+    }
+    if (trigger_Wave){
+        fadeToAction('Wave',0.2);
+        trigger_Wave=false;
+    }
+    if (trigger_Walking){
+        fadeToAction('Walking',0.5);
+        trigger_Walking=false;
     }
     if (flipClub || flipDiamond || flipJoker){
         if (flipClub){
@@ -460,6 +500,7 @@ function animate() {
         }
     }else{
         if (cardsToSwitch){
+            // fadeToAction('ThumbsUp',0.2);
             accumframe+=1;
             if (accumframe>waitframe){
                 if (cardsToSwitch[0] === "1") {
