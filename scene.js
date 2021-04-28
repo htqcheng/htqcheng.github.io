@@ -78,7 +78,7 @@ function getRandomInt(max) {
     var i = Math.random()
     if (i < 0.25) {
         return 0;
-    } else if (i < 0.65) {
+    } else if (i < 0.70) {
         return 1;
     } else {
         return 2;
