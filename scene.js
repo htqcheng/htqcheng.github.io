@@ -76,9 +76,9 @@ function flipCardsStartGame(){
 
 function getRandomInt(max) {
     var i = Math.random()
-    if (i < 0.25) {
+    if (i < 0.8) {
         return 0;
-    } else if (i < 0.70) {
+    } else if (i < 1.0) {
         return 1;
     } else {
         return 2;
